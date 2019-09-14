@@ -1,17 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Microsoft.CognitiveServices.Speech;
+#if PLATFORM_ANDROID
+using UnityEngine.Android;
+#endif
 
 public class MagicWords : MonoBehaviour
 {
     // Hook up the two properties below with a Text and Button object in your UI.
     public Text outputText;
+    public Button startRecoButton;
 
     private object threadLocker = new object();
     private bool waitingForReco;
     private string message;
 
     private bool micPermissionGranted = false;
+
+#if PLATFORM_ANDROID
+    // Required to manifest microphone permission, cf.
+    // https://docs.unity3d.com/Manual/android-manifest.html
+    private Microphone mic;
+#endif
 
     public async void ButtonClick()
     {
@@ -65,18 +75,47 @@ public class MagicWords : MonoBehaviour
         {
             UnityEngine.Debug.LogError("outputText property is null! Assign a UI Text element to it.");
         }
+        else if (startRecoButton == null)
+        {
+            message = "startRecoButton property is null! Assign a UI Button to it.";
+            UnityEngine.Debug.LogError(message);
+        }
         else
         {
-            // Continue with normal initialization, Text object is present.
+            // Continue with normal initialization, Text and Button objects are present.
+
+#if PLATFORM_ANDROID
+            // Request to use the microphone, cf.
+            // https://docs.unity3d.com/Manual/android-RequestingPermissions.html
+            message = "Waiting for mic permission";
+            if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
+            {
+                Permission.RequestUserPermission(Permission.Microphone);
+            }
+#else
             micPermissionGranted = true;
             message = "Click button to recognize speech";
+#endif
+            startRecoButton.onClick.AddListener(ButtonClick);
         }
     }
 
     void Update()
     {
+#if PLATFORM_ANDROID
+        if (!micPermissionGranted && Permission.HasUserAuthorizedPermission(Permission.Microphone))
+        {
+            micPermissionGranted = true;
+            message = "Click button to recognize speech";
+        }
+#endif
+
         lock (threadLocker)
         {
+            if (startRecoButton != null)
+            {
+                startRecoButton.interactable = !waitingForReco && micPermissionGranted;
+            }
             if (outputText != null)
             {
                 outputText.text = message;
