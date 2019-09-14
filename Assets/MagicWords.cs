@@ -28,7 +28,7 @@ public class MagicWords : MonoBehaviour
         // Creates an instance of a speech config with specified subscription key and service region.
         // Replace with your own subscription key and service region (e.g., "westus").
         var config = SpeechConfig.FromSubscription("b4621af6f58b4725a9096991870cf3a8", "westus");
-        config.SetProperty("SpeechServiceConnection_EndSilenceTimeoutMs", "50"); // setting default timeout to 100 miliseconds
+        config.SetProperty("SpeechServiceConnection_EndSilenceTimeoutMs", "10"); // setting default timeout to 10 miliseconds
 
         // Make sure to dispose the recognizer after use!
         using (var recognizer = new SpeechRecognizer(config))
