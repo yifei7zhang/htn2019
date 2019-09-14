@@ -17,7 +17,7 @@ public class MagicWords : MonoBehaviour
     {
         // Creates an instance of a speech config with specified subscription key and service region.
         // Replace with your own subscription key and service region (e.g., "westus").
-        var config = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRegion");
+        var config = SpeechConfig.FromSubscription("b4621af6f58b4725a9096991870cf3a8", "westus");
 
         // Make sure to dispose the recognizer after use!
         using (var recognizer = new SpeechRecognizer(config))
