@@ -36,6 +36,7 @@ public class MagicWords : MonoBehaviour
             {
                 waitingForReco = true;
             }
+            SpeechConfig.SetProperty(3201, "100"); // setting default timeout to 100 miliseconds
 
             // Starts speech recognition, and returns after a single utterance is recognized. The end of a
             // single utterance is determined by listening for silence at the end or until a maximum of 15
