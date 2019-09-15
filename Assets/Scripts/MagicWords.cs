@@ -11,10 +11,17 @@ public class MagicWords : MonoBehaviour
     private string message = "";
     private bool micPermissionGranted = false;
 
-    public GameObject laserPrefab;
+    public GameObject laserPrefabRed;
+    public GameObject laserPrefabBlue;
+    public GameObject laserPrefabWhite; 
+    public GameObject laserPrefabOrange;
+    public GameObject laserPrefabGreen;
+
     public Transform wand;
     public float speed;
     public GameObject wandLight;
+
+    private GameObject laserPrefab;
 
 #if PLATFORM_ANDROID
     // Required to manifest microphone permission, cf.
@@ -124,6 +131,7 @@ public class MagicWords : MonoBehaviour
             if (message.Contains("stu"))
             {
                 Debug.Log(message);
+                laserPrefab = laserPrefabRed;
                 //GetComponent<Renderer>().material.color = new Color(255, 0, 0);
                 Shoot();
             }
@@ -135,18 +143,21 @@ public class MagicWords : MonoBehaviour
             }
             else if (message.Contains("reduc"))
             {
+                laserPrefab = laserPrefabOrange;
                 Debug.Log(message);
                 //GetComponent<Renderer>().material.color = new Color(0, 0, 0);
                 Shoot();
             }
             else if (message.Contains("expel"))
             {
+                laserPrefab = laserPrefabBlue;
                 Debug.Log(message);
                 //GetComponent<Renderer>().material.color = new Color(0, 0, 255);
                 Shoot();
             }
             else if (message.Contains("avada") || message.Contains("bad"))
             {
+                laserPrefab = laserPrefabGreen;
                 Debug.Log(message);
                 //GetComponent<Renderer>().material.color = new Color(0, 255, 0);
                 Shoot();

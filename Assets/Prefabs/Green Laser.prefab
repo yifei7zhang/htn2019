@@ -194,3 +194,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 2704722615685469446, guid: 43f269a5b81bc9f44824215dd03d9cc5,
     type: 3}
+  colorName: Green
