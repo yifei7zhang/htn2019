@@ -86,12 +86,6 @@ public class MagicWords : MonoBehaviour
             message = "";
 #endif
         colour = true;
-
-        //if (OVRInput.Get(OVRInput.Button.One))
-        //{
-        //ButtonClick();
-        //}
-        ButtonClick();
     }
 
     void Update()
@@ -101,6 +95,11 @@ public class MagicWords : MonoBehaviour
         {
             micPermissionGranted = true;
             message = "";
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.One))
+        {
+            ButtonClick();
         }
 
         if (message != "")
@@ -117,7 +116,6 @@ public class MagicWords : MonoBehaviour
                 colour = true;
             }
             message = "";
-            ButtonClick();
         }
 #endif
 
