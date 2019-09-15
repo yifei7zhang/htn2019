@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 8099711795671619142}
   - component: {fileID: 54177505305782828}
   - component: {fileID: 114504824865245192}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: White Laser
   m_TagString: Laser
   m_Icon: {fileID: 0}
@@ -192,3 +192,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f0b3bf8d6df11f448ae3352c290493b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 2704722615685469446, guid: 43f269a5b81bc9f44824215dd03d9cc5,
+    type: 3}
