@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 91098125f1f98b145a0cf94adf5d4662
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/ProjectileDev.unity
     guid: 84057e96b94614f4d9fcb9b356c032b4
+  - enabled: 1
+    path: Assets/Poly/Imagine Geometric Pack/Demo_Night.unity
+    guid: 923e2239e96d4d241a9da04b6b7b076b
   m_configObjects: {}
