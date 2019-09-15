@@ -14,6 +14,7 @@ public class MagicWords : MonoBehaviour
     public GameObject laserPrefab;
     public Transform wand;
     public float speed;
+    public GameObject wandLight;
 
 #if PLATFORM_ANDROID
     // Required to manifest microphone permission, cf.
@@ -129,8 +130,8 @@ public class MagicWords : MonoBehaviour
             else if (message.Contains("lum"))
             {
                 Debug.Log(message);
+                wandLight.gameObject.SetActive(!wandLight.gameObject.activeSelf);
                 //GetComponent<Renderer>().material.color = new Color(1, 1, 1);
-                Shoot();
             }
             else if (message.Contains("reduc"))
             {

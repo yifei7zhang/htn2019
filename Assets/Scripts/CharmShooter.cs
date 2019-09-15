@@ -7,11 +7,13 @@ public class CharmShooter : MonoBehaviour
 {
 	public GameObject laserPrefab;
 	public Transform wand;
+    public GameObject wandLight;
 	public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
+        wandLight.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
