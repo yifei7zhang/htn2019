@@ -1,0 +1,5 @@
+stupify (255, 0, 0) red FIX
+lumos (1, 1, 1) white FIX
+reducto (0, 0, 0) black
+expelliarmus (0, 0, 255) blue
+avadakedavra (0, 255, 0) green

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using Microsoft.CognitiveServices.Speech;
 #if PLATFORM_ANDROID
 using UnityEngine.Android;
@@ -7,13 +6,9 @@ using UnityEngine.Android;
 
 public class MagicWords : MonoBehaviour
 {
-    // Hook up the two properties below with a Text and Button object in your UI.
-
     private object threadLocker = new object();
     private bool waitingForReco;
-    private string message;
-    private bool colour;
-
+    private string message = "";
     private bool micPermissionGranted = false;
 
 #if PLATFORM_ANDROID
@@ -29,7 +24,6 @@ public class MagicWords : MonoBehaviour
         var config = SpeechConfig.FromSubscription("761590147de94dc0a89ecbe05a47c17c", "westus");
         config.SetProperty("SpeechServiceConnection_EndSilenceTimeoutMs", "10"); // setting default timeout to 10 miliseconds
 
-        // Make sure to dispose the recognizer after use!
         using (var recognizer = new SpeechRecognizer(config))
         {
             lock (threadLocker)
@@ -71,21 +65,16 @@ public class MagicWords : MonoBehaviour
 
     void Start()
     {
-            // Continue with normal initialization, Text and Button objects are present.
-
 #if PLATFORM_ANDROID
             // Request to use the microphone, cf.
             // https://docs.unity3d.com/Manual/android-RequestingPermissions.html
-            message = "";
             if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
             {
                 Permission.RequestUserPermission(Permission.Microphone);
             }
 #else
             micPermissionGranted = true;
-            message = "";
 #endif
-        colour = true;
     }
 
     void Update()
@@ -94,7 +83,6 @@ public class MagicWords : MonoBehaviour
         if (!micPermissionGranted && Permission.HasUserAuthorizedPermission(Permission.Microphone))
         {
             micPermissionGranted = true;
-            message = "";
         }
 
         if (OVRInput.GetDown(OVRInput.Button.One))
@@ -102,21 +90,51 @@ public class MagicWords : MonoBehaviour
             ButtonClick();
         }
 
+        //reducto
+        if (OVRInput.GetDown(OVRInput.Button.Four))
+        {
+            GetComponent<Renderer>().material.color = new Color(0, 0, 0);
+            message = "";
+        }
+
+        //lumos
+        if (OVRInput.GetDown(OVRInput.Button.Three))
+        {
+            GetComponent<Renderer>().material.color = new Color(1, 1, 1);
+            message = "";
+        }
+        
         if (message != "")
         {
-            Debug.Log(message);
-            if (colour == true)
+            message = message.ToLower();
+            if (message.Contains("stu"))
             {
-                GetComponent<Renderer>().material.color = new Color(1, 1, 1);
-                colour = false;
+                Debug.Log(message);
+                GetComponent<Renderer>().material.color = new Color(255, 0, 0);
             }
-            else
+            else if (message.Contains("lum"))
             {
+                Debug.Log(message);
+                GetComponent<Renderer>().material.color = new Color(1, 1, 1);
+            }
+            else if (message.Contains("reduc"))
+            {
+                Debug.Log(message);
                 GetComponent<Renderer>().material.color = new Color(0, 0, 0);
-                colour = true;
+            }
+            else if (message.Contains("expel"))
+            {
+                Debug.Log(message);
+                GetComponent<Renderer>().material.color = new Color(0, 0, 255);
+            }
+            else if (message.Contains("avada") || message.Contains("bad"))
+            {
+                Debug.Log(message);
+                GetComponent<Renderer>().material.color = new Color(0, 255, 0);
             }
             message = "";
         }
+       
 #endif
 
         lock (threadLocker)
