@@ -8,7 +8,6 @@ public class LaserController : MonoBehaviour
     public string colorName;
 
     private Vector3 initPos;
-    private GameObject wand;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +23,7 @@ public class LaserController : MonoBehaviour
         {
             if (colorName == "Red")
             {
-                col.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.GetComponent<Rigidbody>().velocity / 2);
+                col.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0, 1000, 0));
             }
             else if (colorName == "Green")
             {
@@ -40,18 +39,14 @@ public class LaserController : MonoBehaviour
             }
             else if (colorName == "Blue")
             {
-                col.transform.Find("Wand").GetComponent<Rigidbody>().velocity = new Vector3(0, 1, 0);
-                wand = col.transform.Find("Wand").gameObject;
-                Invoke("DestroyWand", 1.0f);
+                col.transform.Find("Wand").transform.Find("default").gameObject.GetComponent<Rigidbody>().velocity = new Vector3(5, 5, 0);
+                col.transform.Find("Wand").transform.Find("default").gameObject.GetComponent<Rigidbody>().useGravity = true;
+                GameObject wand = col.transform.Find("Wand").gameObject;
+                Destroy(wand);
             }
         }
 
         Destroy(this.gameObject);
-    }
-
-    void DestroyWand()
-    {
-        wand.SetActive(false);
     }
 
     // Update is called once per frame
