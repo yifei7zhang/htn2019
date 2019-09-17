@@ -1,4 +1,4 @@
-Our project for Hack The North 2019!
+##Our project for Hack The North 2019!
 
 **Inspiration**
 
@@ -24,6 +24,6 @@ We are very proud of what we were able to accomplish in this short amount of tim
 
 We learned a lot more about branch management, and smart repository management. We were able to maintain a clean repository, and saved time ensuring that everything was well-maintained early on. We also learned more about using Microsoft Azure&#39;s speech services, and various different training methods for the speech to text model. Finally, we were able to gain a more in depth understanding of Unity and C#, as well as virtual reality games as well.
 
-**What&#39;s next for Lumos****.**
+**What&#39;s next for Lumos**.**
 
 The next steps for Lumos is to improve the latency and speed at which speech is translated into text. Right now, using Microsoft Azure&#39;s crowd services has quite a large delay, and setting up a local service to determine spell-casts would be an important step to improving performance. Another next step is to improve the accuracy of the speech-to-text function by creating our own custom model of specific spell words and selecting from that predetermined list. This way, we would be able to expand our arsenal of spells available for the player and determine them to a greater deal of accuracy. Finally, improving the visuals and 3D models would be another great step for this game!
